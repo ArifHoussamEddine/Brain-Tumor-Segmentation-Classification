@@ -19,7 +19,6 @@ This repository contains the official implementation of our research paper. The 
 - `Segmentation/`: Progressive versions (v1-v6) of the U-Net implementation.
 - `Classification GA/`: The core innovation—GA-based optimization scripts.
 - `Web App/`: Flask-based server for real-time tumor prediction.
-- `Saves/`: Pre-trained weights (.h5) for the final optimized models.
 
 ## 🔬 Methodology
 Our approach follows three main stages:
