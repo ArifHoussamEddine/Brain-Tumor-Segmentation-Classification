@@ -1,0 +1,47 @@
+<!-- template/2FA.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style4.css') }}"/>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="form-box">
+      <div class="icon">@</div>
+      <h3>Verify Your Email</h3>
+      <p>Please Enter The Verification Code We Sent To Your Email</p>
+
+      <form method="POST" action="{{ url_for('verify_otp') }}">
+        <div class="otp-box">
+          <input type="text" maxlength="1" name="otp1" required />
+          <input type="text" maxlength="1" name="otp2" required />
+          <input type="text" maxlength="1" name="otp3" required />
+          <input type="text" maxlength="1" name="otp4" required />
+          <input type="text" maxlength="1" name="otp5" required />
+          <input type="text" maxlength="1" name="otp6" required />
+        </div>
+        <button type="submit" id="confirm">Confirm</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const inputs = document.querySelectorAll('.otp-box input');
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

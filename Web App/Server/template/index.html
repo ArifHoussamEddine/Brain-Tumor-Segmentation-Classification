@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brain Tumor Segmentation & Classification</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo"><a href="#">Brain Tumor</a></div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#ourservices">Our Services</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="{{ url_for('login') }}" class="login-btn">Logout</a></li>
+
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Brain Tumor Segmentation & Classification</h2>
+    <p>Upload your Brain MRI Image</p>
+    <form action="/home" method="post" enctype="multipart/form-data" class="upload-box">
+        <input type="file" name="file" accept="image/*" id="file-input" required />
+        <label for="file-input" class="upload-btn">Choose Image</label>
+        <br /><br />
+        <button type="submit" class="upload-btn">Upload & Analyse</button>
+      </form>
+      
+
+    {% if original and segmented %}
+    <div class="result">
+      <div>
+        <h3>Original Image</h3>
+        <img src="{{ original }}" alt="Original Image" />
+      </div>
+      <div>
+        <h3>Segmented Image</h3>
+        <img src="{{ segmented }}" alt="Segmented Image" />
+      </div>
+    </div>
+
+    {% if tumor_type %}
+    <div class="tumor-type">Tumor Type: {{ tumor_type }}</div>
+    {% endif %}
+    {% endif %}
+  </div>
+
+  <section class="services" id="ourservices">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <h3>Brain MRI Segmentation</h3>
+        <p>Accurate AI-based segmentation of brain MRI to detect tumor boundaries.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>Tumor Classification</h3>
+        <p>Classify the tumor type (e.g., Meningioma, Glioma) using deep learning models.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Fast Processing</h3>
+        <p>Get results in seconds with optimized medical image processing pipelines.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Use the platform from any device — phone, tablet, or desktop.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="icon">📍</div>
+          <h3>Address</h3>
+          <p>Laghouat , Algeria</p>
+        </div>
+        <div class="info-item">
+          <div class="icon">📧</div>
+          <h3>Email</h3>
+          <p>h.arif.inf@lagh-univ.dz</p>
+        </div>
+        <div class="info-item">
+          <div class="icon">📱</div>
+          <h3>Phone</h3>
+          <p>+213 667 25 22 87</p>
+        </div>
+      </div>
+  
+      <form class="contact-form" action="/contact" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group" >
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <input type="text"  name="subject" placeholder="Subject" required>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your Message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
